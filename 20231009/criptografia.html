@@ -1,0 +1,58 @@
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title> Criptografia </title>
+        <script lang="JavaScript">
+            function criptografa_textos()
+            {
+                var texto = "", ascii, a = -1, retorno = "", i, codigo = "14159265358979323846264338";
+
+                texto = document.Frm.txtTexto.value;
+               
+                for (i = 0; i < texto.length; i++)
+                {          
+                    a++;
+                    
+                    ascii = texto.charCodeAt(i) - parseInt(codigo.charAt(a));
+                    retorno += String.fromCharCode(ascii);
+
+                    if(a == 26)
+                    {
+                        a = -1;
+                    }
+                }
+
+                document.Frm.txtCripto.value = retorno;
+            }
+            function descriptografa_textos()
+            {
+                var cripto = "", ascii, a = -1, retorno = "", i, codigo = "14159265358979323846264338";
+
+                cripto = document.Frm.txtCripto.value;
+
+                for (i = 0; i < cripto.length; i++)
+                {       
+                    a++;
+                    
+                    ascii = cripto.charCodeAt(i) + parseInt(codigo.charAt(a));
+                    retorno += String.fromCharCode(ascii);
+
+                    if(a == 26)
+                    {
+                        a = 0;
+                    }
+                }
+
+                document.Frm.txtTexto.value = retorno;
+            }
+        </script>
+        <body>
+            <form name="Frm">
+                <input type="text" name="txtTexto" value=""> <br><br>
+                <input type="button" value="Criptografar" onclick="criptografa_textos()">
+                <input type="button" value="Descripitografar" onclick="descriptografa_textos()"> <br><br>
+                <input id= "passagem" type="text" name="txtCripto" value="">
+            </form>
+        </body>
+    </head>
+</html>
